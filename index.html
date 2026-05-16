@@ -5,33 +5,175 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Dashboard - CloudComp</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 15px; padding: 25px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
-        h1 { text-align: center; color: #333; margin-bottom: 30px; font-size: 2.5em; }
-        .form-section { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 30px; }
-        .form-group { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px; }
-        .form-group input, .form-group select { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; }
-        .btn-add { background: #28a745; color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; transition: background 0.3s; }
-        .btn-add:hover { background: #218838; }
-        .table-container { overflow-x: auto; margin-bottom: 30px; }
-        table { width: 100%; border-collapse: collapse; background: white; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
-        th { background: #667eea; color: white; font-weight: bold; }
-        tr:hover { background: #f5f5f5; }
-        .status-badge { padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-block; }
-        .status-done { background: #d4edda; color: #155724; }
-        .status-progress { background: #fff3cd; color: #856404; }
-        .btn-edit, .btn-delete { padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; margin: 0 3px; font-size: 12px; }
-        .btn-edit { background: #ffc107; color: #333; }
-        .btn-delete { background: #dc3545; color: white; }
-        .chart-section { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px; }
-        .chart-section h3 { margin-bottom: 15px; color: #333; }
-        .user-list { list-style: none; }
-        .user-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #ddd; }
-        .task-count { background: #667eea; color: white; padding: 2px 10px; border-radius: 20px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .form-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .form-group input, .form-group select {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .btn-add {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-add:hover {
+            background: #218838;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .status-done {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-progress {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .btn-edit, .btn-delete {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 3px;
+            font-size: 12px;
+        }
+
+        .btn-edit {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: #e0a800;
+        }
+
+        .btn-delete:hover {
+            background: #c82333;
+        }
+
+        .chart-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .chart-section h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .user-list {
+            list-style: none;
+        }
+
+        .user-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .task-count {
+            background: #667eea;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     <div class="container">
@@ -46,7 +188,7 @@
                     <option value="On Progress">On Progress</option>
                     <option value="Done">Done</option>
                 </select>
-                <button class="btn-add" id="addTaskBtn">+ Add Task</button>
+                <button class="btn-add" onclick="addTask()">+ Add Task</button>
             </div>
         </div>
 
@@ -66,134 +208,32 @@
     </div>
 
     <script>
-        // ========== GANTI DENGAN DATA SUPABASE ASLI KAMU ==========
-        const SUPABASE_URL = 'https://hvdfoxquoymhafwdpqfp.supabase.co';
-        const SUPABASE_ANON_KEY = 'sb_publishable_HnY6ZM34MowLWp7cbxJA8A_cWuAfwhl';
-        
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Data task disimpan di localStorage
+        let tasks = [];
 
-        // ========== LOAD TASK ==========
-        async function loadTasks() {
-            console.log("📊 Memuat task dari Supabase...");
-            const { data: tasks, error } = await supabase
-                .from('tasks')
-                .select('*')
-                .order('id', { ascending: false });
-
-            if (error) {
-                console.error('Error loading tasks:', error);
-                alert('Gagal memuat data: ' + error.message);
-                return;
+        // Load data dari localStorage saat halaman dimuat
+        function loadTasks() {
+            const storedTasks = localStorage.getItem('tasks');
+            if (storedTasks) {
+                tasks = JSON.parse(storedTasks);
+            } else {
+                // Data contoh jika belum ada data
+                tasks = [
+                    { id: 1, nama: "Meyla Azzahra", task: "Menambahkan task", tanggal: "2026-05-01", status: "Done" }
+                ];
+                saveTasks();
             }
-
-            console.log(`✅ Memuat ${tasks?.length || 0} task`);
-            renderTaskTable(tasks || []);
-            renderUserDistribution(tasks || []);
+            renderTaskTable();
+            renderUserDistribution();
         }
 
-        // ========== RENDER TABEL ==========
-        function renderTaskTable(tasks) {
-            const tbody = document.getElementById('task-table-body');
-            if (!tasks.length) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Belum ada task</td></tr>';
-                return;
-            }
-
-            tbody.innerHTML = tasks.map((task, index) => `
-                <tr>
-                    <td>${index + 1}</td>
-                    <td>${escapeHtml(task.nama)}</td>
-                    <td>${escapeHtml(task.task)}</td>
-                    <td>${task.tanggal}</td>
-                    <td><span class="status-badge ${task.status === 'Done' ? 'status-done' : 'status-progress'}">${task.status}</span></td>
-                    <td>
-                        <button class="btn-edit" data-id="${task.id}" data-status="${task.status}">Edit</button>
-                        <button class="btn-delete" data-id="${task.id}">Delete</button>
-                    </td>
-                </tr>
-            `).join('');
-
-            // Event listener untuk tombol Edit & Delete
-            document.querySelectorAll('.btn-edit').forEach(btn => {
-                btn.addEventListener('click', () => editTask(btn.dataset.id, btn.dataset.status));
-            });
-            document.querySelectorAll('.btn-delete').forEach(btn => {
-                btn.addEventListener('click', () => deleteTask(btn.dataset.id));
-            });
+        // Simpan ke localStorage
+        function saveTasks() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
         }
 
-        // ========== RENDER DISTRIBUSI USER ==========
-        function renderUserDistribution(tasks) {
-            const userMap = new Map();
-            tasks.forEach(task => {
-                userMap.set(task.nama, (userMap.get(task.nama) || 0) + 1);
-            });
-
-            const container = document.getElementById('user-distribution');
-            if (userMap.size === 0) {
-                container.innerHTML = '<p>Belum ada data user</p>';
-                return;
-            }
-
-            let html = '<div class="user-list">';
-            for (let [nama, count] of userMap) {
-                html += `<div class="user-item"><span>👤 ${escapeHtml(nama)}</span><span class="task-count">${count} task</span></div>`;
-            }
-            html += '</div>';
-            container.innerHTML = html;
-        }
-
-        // ========== TAMBAH TASK ==========
-        async function addTask(nama, task, tanggal, status) {
-            console.log("📝 Menambah task:", { nama, task, tanggal, status });
-            
-            const { data, error } = await supabase
-                .from('tasks')
-                .insert([{ nama, task, tanggal, status }])
-                .select();
-
-            if (error) {
-                console.error('Error adding task:', error);
-                alert('Gagal menambah task: ' + error.message);
-                return false;
-            }
-
-            console.log("✅ Task berhasil ditambahkan");
-            return true;
-        }
-
-        // ========== HAPUS TASK ==========
-        async function deleteTask(id) {
-            if (!confirm('Yakin ingin menghapus task ini?')) return;
-            
-            const { error } = await supabase.from('tasks').delete().eq('id', id);
-            if (error) {
-                console.error('Error deleting task:', error);
-                alert('Gagal menghapus task!');
-                return;
-            }
-            loadTasks();
-        }
-
-        // ========== EDIT TASK ==========
-        async function editTask(id, currentStatus) {
-            const newStatus = prompt('Ubah status menjadi:', currentStatus);
-            if (!newStatus || (newStatus !== 'Done' && newStatus !== 'On Progress')) {
-                alert('Status harus "Done" atau "On Progress"');
-                return;
-            }
-            
-            const { error } = await supabase.from('tasks').update({ status: newStatus }).eq('id', id);
-            if (error) {
-                console.error('Error updating task:', error);
-                alert('Gagal mengupdate task!');
-                return;
-            }
-            loadTasks();
-        }
-
-        // ========== HANDLER TOMBOL ADD ==========
-        document.getElementById('addTaskBtn').addEventListener('click', async () => {
+        // Tambah task
+        function addTask() {
             const nama = document.getElementById('nama').value.trim();
             const task = document.getElementById('task').value.trim();
             const tanggal = document.getElementById('tanggal').value;
@@ -204,17 +244,108 @@
                 return;
             }
 
-            const success = await addTask(nama, task, tanggal, status);
-            if (success) {
-                document.getElementById('nama').value = '';
-                document.getElementById('task').value = '';
-                document.getElementById('tanggal').value = '';
-                document.getElementById('status').value = 'On Progress';
-                await loadTasks();
-            }
-        });
+            const newTask = {
+                id: Date.now(),
+                nama: nama,
+                task: task,
+                tanggal: tanggal,
+                status: status
+            };
 
-        // ========== UTILITY ==========
+            tasks.push(newTask);
+            saveTasks();
+            
+            // Reset form
+            document.getElementById('nama').value = '';
+            document.getElementById('task').value = '';
+            document.getElementById('tanggal').value = '';
+            document.getElementById('status').value = 'On Progress';
+            
+            renderTaskTable();
+            renderUserDistribution();
+        }
+
+        // Hapus task
+        function deleteTask(id) {
+            if (confirm('Yakin ingin menghapus task ini?')) {
+                tasks = tasks.filter(task => task.id !== id);
+                saveTasks();
+                renderTaskTable();
+                renderUserDistribution();
+            }
+        }
+
+        // Edit task (ubah status)
+        function editTask(id, currentStatus) {
+            const newStatus = prompt('Ubah status menjadi (Done/On Progress):', currentStatus);
+            if (newStatus && (newStatus === 'Done' || newStatus === 'On Progress')) {
+                const task = tasks.find(t => t.id === id);
+                if (task) {
+                    task.status = newStatus;
+                    saveTasks();
+                    renderTaskTable();
+                    renderUserDistribution();
+                }
+            } else if (newStatus) {
+                alert('Status harus "Done" atau "On Progress"');
+            }
+        }
+
+        // Render tabel task
+        function renderTaskTable() {
+            const tbody = document.getElementById('task-table-body');
+            if (tasks.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Belum ada task</td></tr>';
+                return;
+            }
+
+            let html = '';
+            tasks.forEach((task, index) => {
+                html += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${escapeHtml(task.nama)}</td>
+                        <td>${escapeHtml(task.task)}</td>
+                        <td>${task.tanggal}</td>
+                        <td><span class="status-badge ${task.status === 'Done' ? 'status-done' : 'status-progress'}">${task.status}</span></td>
+                        <td>
+                            <button class="btn-edit" onclick="editTask(${task.id}, '${task.status}')">Edit</button>
+                            <button class="btn-delete" onclick="deleteTask(${task.id})">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            tbody.innerHTML = html;
+        }
+
+        // Render distribusi task per user
+        function renderUserDistribution() {
+            const userMap = new Map();
+            tasks.forEach(task => {
+                const count = userMap.get(task.nama) || 0;
+                userMap.set(task.nama, count + 1);
+            });
+
+            const container = document.getElementById('user-distribution');
+            if (userMap.size === 0) {
+                container.innerHTML = '<p>Belum ada data user</p>';
+                return;
+            }
+
+            let html = '<div class="user-list">';
+            for (let [nama, count] of userMap) {
+                html += `
+                    <div class="user-item">
+                        <span>👤 ${escapeHtml(nama)}</span>
+                        <span class="task-count">${count} task</span>
+                    </div>
+                `;
+            }
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        // Utility: escape HTML
         function escapeHtml(str) {
             if (!str) return '';
             return str.replace(/[&<>]/g, function(m) {
@@ -225,7 +356,7 @@
             });
         }
 
-        // ========== MULAI ==========
+        // Jalankan loadTasks saat halaman dimuat
         loadTasks();
     </script>
 </body>
