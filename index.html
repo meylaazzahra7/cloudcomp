@@ -5,177 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Dashboard - CloudComp</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-        }
-
-        /* Form Input */
-        .form-section {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-        }
-
-        .form-group {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-bottom: 15px;
-        }
-
-        .form-group input, .form-group select {
-            flex: 1;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        .btn-add {
-            background: #28a745;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        .btn-add:hover {
-            background: #218838;
-        }
-
-        /* Tabel */
-        .table-container {
-            overflow-x: auto;
-            margin-bottom: 30px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background: #667eea;
-            color: white;
-            font-weight: bold;
-        }
-
-        tr:hover {
-            background: #f5f5f5;
-        }
-
-        .status-badge {
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            display: inline-block;
-        }
-
-        .status-done {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .status-progress {
-            background: #fff3cd;
-            color: #856404;
-        }
-
-        .btn-edit, .btn-delete {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 0 3px;
-            font-size: 12px;
-        }
-
-        .btn-edit {
-            background: #ffc107;
-            color: #333;
-        }
-
-        .btn-delete {
-            background: #dc3545;
-            color: white;
-        }
-
-        .btn-edit:hover {
-            background: #e0a800;
-        }
-
-        .btn-delete:hover {
-            background: #c82333;
-        }
-
-        /* Chart Section */
-        .chart-section {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .chart-section h3 {
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .user-list {
-            list-style: none;
-        }
-
-        .user-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .task-count {
-            background: #667eea;
-            color: white;
-            padding: 2px 10px;
-            border-radius: 20px;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 15px; padding: 25px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        h1 { text-align: center; color: #333; margin-bottom: 30px; font-size: 2.5em; }
+        .form-section { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 30px; }
+        .form-group { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px; }
+        .form-group input, .form-group select { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; }
+        .btn-add { background: #28a745; color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; transition: background 0.3s; }
+        .btn-add:hover { background: #218838; }
+        .table-container { overflow-x: auto; margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #667eea; color: white; font-weight: bold; }
+        tr:hover { background: #f5f5f5; }
+        .status-badge { padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-block; }
+        .status-done { background: #d4edda; color: #155724; }
+        .status-progress { background: #fff3cd; color: #856404; }
+        .btn-edit, .btn-delete { padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; margin: 0 3px; font-size: 12px; }
+        .btn-edit { background: #ffc107; color: #333; }
+        .btn-delete { background: #dc3545; color: white; }
+        .chart-section { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px; }
+        .chart-section h3 { margin-bottom: 15px; color: #333; }
+        .user-list { list-style: none; }
+        .user-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #ddd; }
+        .task-count { background: #667eea; color: white; padding: 2px 10px; border-radius: 20px; }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -183,7 +37,6 @@
     <div class="container">
         <h1>📋 TASK DASHBOARD</h1>
 
-        <!-- Form Tambah Task -->
         <div class="form-section">
             <div class="form-group">
                 <input type="text" id="nama" placeholder="Nama Lengkap" required>
@@ -193,23 +46,19 @@
                     <option value="On Progress">On Progress</option>
                     <option value="Done">Done</option>
                 </select>
-                <button class="btn-add" onclick="addTask()">+ Add Task</button>
+                <button class="btn-add" id="addTaskBtn">+ Add Task</button>
             </div>
         </div>
 
-        <!-- Tabel Task -->
         <div class="table-container">
-            <table>
+            <table id="taskTable">
                 <thead>
-                    <tr>
-                        <th>No</th><th>Nama</th><th>Task</th><th>Tanggal</th><th>Status</th><th>Aksi</th>
-                    </tr>
+                    <tr><th>No</th><th>Nama</th><th>Task</th><th>Tanggal</th><th>Status</th><th>Aksi</th></tr>
                 </thead>
                 <tbody id="task-table-body"></tbody>
             </table>
         </div>
 
-        <!-- Distribusi Task per User -->
         <div class="chart-section">
             <h3>📊 Distribusi Task per User</h3>
             <div id="user-distribution"></div>
@@ -217,15 +66,15 @@
     </div>
 
     <script>
-        // ========== KONEKSI SUPABASE ==========
-        // 🔴 GANTI DENGAN DATA ASLI DARI AKUN SUPABASE KAMU! 🔴
-        const SUPABASE_URL = 'https://hvdfoxquoymhafwdpqfp.supabase.co';  // Ganti dengan Project URL-mu
-        const SUPABASE_ANON_KEY = 'sb_publishable_HnY6ZM34MowLWp7cbxJA8A_cWuAfwhl';  // Ganti dengan Publishable Key asli
+        // ========== GANTI DENGAN DATA SUPABASE ASLI KAMU ==========
+        const SUPABASE_URL = 'https://hvdfoxquoymhafwdpqfp.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_HnY6ZM34MowLWp7cbxJA8A_cWuAfwhl';
         
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        // ========== FUNGSI LOAD TASK DARI DATABASE ==========
+        // ========== LOAD TASK ==========
         async function loadTasks() {
+            console.log("📊 Memuat task dari Supabase...");
             const { data: tasks, error } = await supabase
                 .from('tasks')
                 .select('*')
@@ -233,18 +82,19 @@
 
             if (error) {
                 console.error('Error loading tasks:', error);
-                alert('Gagal memuat data!');
+                alert('Gagal memuat data: ' + error.message);
                 return;
             }
 
-            renderTaskTable(tasks);
-            renderUserDistribution(tasks);
+            console.log(`✅ Memuat ${tasks?.length || 0} task`);
+            renderTaskTable(tasks || []);
+            renderUserDistribution(tasks || []);
         }
 
         // ========== RENDER TABEL ==========
         function renderTaskTable(tasks) {
             const tbody = document.getElementById('task-table-body');
-            if (!tasks || tasks.length === 0) {
+            if (!tasks.length) {
                 tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Belum ada task</td></tr>';
                 return;
             }
@@ -257,19 +107,26 @@
                     <td>${task.tanggal}</td>
                     <td><span class="status-badge ${task.status === 'Done' ? 'status-done' : 'status-progress'}">${task.status}</span></td>
                     <td>
-                        <button class="btn-edit" onclick="editTask(${task.id})">Edit</button>
-                        <button class="btn-delete" onclick="deleteTask(${task.id})">Delete</button>
+                        <button class="btn-edit" data-id="${task.id}" data-status="${task.status}">Edit</button>
+                        <button class="btn-delete" data-id="${task.id}">Delete</button>
                     </td>
                 </tr>
             `).join('');
+
+            // Event listener untuk tombol Edit & Delete
+            document.querySelectorAll('.btn-edit').forEach(btn => {
+                btn.addEventListener('click', () => editTask(btn.dataset.id, btn.dataset.status));
+            });
+            document.querySelectorAll('.btn-delete').forEach(btn => {
+                btn.addEventListener('click', () => deleteTask(btn.dataset.id));
+            });
         }
 
         // ========== RENDER DISTRIBUSI USER ==========
         function renderUserDistribution(tasks) {
             const userMap = new Map();
             tasks.forEach(task => {
-                const count = userMap.get(task.nama) || 0;
-                userMap.set(task.nama, count + 1);
+                userMap.set(task.nama, (userMap.get(task.nama) || 0) + 1);
             });
 
             const container = document.getElementById('user-distribution');
@@ -280,19 +137,63 @@
 
             let html = '<div class="user-list">';
             for (let [nama, count] of userMap) {
-                html += `
-                    <div class="user-item">
-                        <span>👤 ${escapeHtml(nama)}</span>
-                        <span class="task-count">${count} task</span>
-                    </div>
-                `;
+                html += `<div class="user-item"><span>👤 ${escapeHtml(nama)}</span><span class="task-count">${count} task</span></div>`;
             }
             html += '</div>';
             container.innerHTML = html;
         }
 
-        // ========== TAMBAH TASK KE SUPABASE ==========
-        async function addTask() {
+        // ========== TAMBAH TASK ==========
+        async function addTask(nama, task, tanggal, status) {
+            console.log("📝 Menambah task:", { nama, task, tanggal, status });
+            
+            const { data, error } = await supabase
+                .from('tasks')
+                .insert([{ nama, task, tanggal, status }])
+                .select();
+
+            if (error) {
+                console.error('Error adding task:', error);
+                alert('Gagal menambah task: ' + error.message);
+                return false;
+            }
+
+            console.log("✅ Task berhasil ditambahkan");
+            return true;
+        }
+
+        // ========== HAPUS TASK ==========
+        async function deleteTask(id) {
+            if (!confirm('Yakin ingin menghapus task ini?')) return;
+            
+            const { error } = await supabase.from('tasks').delete().eq('id', id);
+            if (error) {
+                console.error('Error deleting task:', error);
+                alert('Gagal menghapus task!');
+                return;
+            }
+            loadTasks();
+        }
+
+        // ========== EDIT TASK ==========
+        async function editTask(id, currentStatus) {
+            const newStatus = prompt('Ubah status menjadi:', currentStatus);
+            if (!newStatus || (newStatus !== 'Done' && newStatus !== 'On Progress')) {
+                alert('Status harus "Done" atau "On Progress"');
+                return;
+            }
+            
+            const { error } = await supabase.from('tasks').update({ status: newStatus }).eq('id', id);
+            if (error) {
+                console.error('Error updating task:', error);
+                alert('Gagal mengupdate task!');
+                return;
+            }
+            loadTasks();
+        }
+
+        // ========== HANDLER TOMBOL ADD ==========
+        document.getElementById('addTaskBtn').addEventListener('click', async () => {
             const nama = document.getElementById('nama').value.trim();
             const task = document.getElementById('task').value.trim();
             const tanggal = document.getElementById('tanggal').value;
@@ -303,68 +204,17 @@
                 return;
             }
 
-            const { data, error } = await supabase
-                .from('tasks')
-                .insert([{ nama, task, tanggal, status }])
-                .select();
-
-            if (error) {
-                console.error('Error adding task:', error);
-                alert('Gagal menambah task!');
-                return;
+            const success = await addTask(nama, task, tanggal, status);
+            if (success) {
+                document.getElementById('nama').value = '';
+                document.getElementById('task').value = '';
+                document.getElementById('tanggal').value = '';
+                document.getElementById('status').value = 'On Progress';
+                await loadTasks();
             }
+        });
 
-            // Reset form
-            document.getElementById('nama').value = '';
-            document.getElementById('task').value = '';
-            document.getElementById('tanggal').value = '';
-            document.getElementById('status').value = 'On Progress';
-
-            // Refresh tabel
-            loadTasks();
-        }
-
-        // ========== HAPUS TASK ==========
-        async function deleteTask(id) {
-            if (!confirm('Yakin ingin menghapus task ini?')) return;
-
-            const { error } = await supabase
-                .from('tasks')
-                .delete()
-                .eq('id', id);
-
-            if (error) {
-                console.error('Error deleting task:', error);
-                alert('Gagal menghapus task!');
-                return;
-            }
-
-            loadTasks();
-        }
-
-        // ========== EDIT TASK (SEDERHANA) ==========
-        async function editTask(id) {
-            const newStatus = prompt('Ubah status menjadi: (Done / On Progress)');
-            if (!newStatus || (newStatus !== 'Done' && newStatus !== 'On Progress')) {
-                alert('Status harus "Done" atau "On Progress"');
-                return;
-            }
-
-            const { error } = await supabase
-                .from('tasks')
-                .update({ status: newStatus })
-                .eq('id', id);
-
-            if (error) {
-                console.error('Error updating task:', error);
-                alert('Gagal mengupdate task!');
-                return;
-            }
-
-            loadTasks();
-        }
-
-        // ========== UTILITY: ESCAPE HTML ==========
+        // ========== UTILITY ==========
         function escapeHtml(str) {
             if (!str) return '';
             return str.replace(/[&<>]/g, function(m) {
@@ -375,7 +225,7 @@
             });
         }
 
-        // ========== LOAD SAAT HALAMAN DIBUKA ==========
+        // ========== MULAI ==========
         loadTasks();
     </script>
 </body>
